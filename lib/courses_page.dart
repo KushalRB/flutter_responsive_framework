@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_responsive_framework/widgets.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 import 'courses_data.dart';
 
@@ -9,6 +10,7 @@ class CoursesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Course> courses = Course.courses;
+    print('The width is ${MediaQuery.of(context).size.width}');
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.lightBlue[800],
@@ -34,10 +36,18 @@ class CoursesPage extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          Column(
+          ResponsiveRowColumn(
+            rowMainAxisAlignment: MainAxisAlignment.center,
+            rowPadding: const EdgeInsets.all(30),
+            columnPadding: const EdgeInsets.all(30),
+            layout: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP)
+                ? ResponsiveRowColumnType.COLUMN
+                : ResponsiveRowColumnType.ROW,
             children: [
-              CourseTile(course: courses[0]),
-              CourseTile(course: courses[1]),
+              ResponsiveRowColumnItem(
+                  rowFlex: 1, child: CourseTile(course: courses[0])),
+              ResponsiveRowColumnItem(
+                  rowFlex: 1, child: CourseTile(course: courses[1])),
             ],
           ),
           const SizedBox(
