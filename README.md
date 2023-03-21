@@ -1,4 +1,4 @@
-# Flutter Responsive Framework Tutorial
+# Flutter Responsive Framework
 
 ### Learnt from :point_right: [this tutorial](https://resocoder.com/responsive-flutter-tutorial) :point_left:.
 
